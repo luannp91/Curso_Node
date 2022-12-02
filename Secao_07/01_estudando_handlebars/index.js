@@ -5,6 +5,10 @@ const app = express()
 app.engine('handlebars', exphbs.engine())
 app.set('view engine', 'handlebars')
 
+app.get('/dashboard', (req, res) => {
+    res.render('dashboard')
+})
+
 app.get('/', (req, res) => {
 
     const date = new Date()
@@ -17,7 +21,11 @@ app.get('/', (req, res) => {
 
     const word = 'teste'
 
-    res.render('home', { user: user, word })
+    const auth = true
+
+    const approved = true
+
+    res.render('home', { user: user, word, auth, approved })
 })
 
 app.listen(3000, () => {
